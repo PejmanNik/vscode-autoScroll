@@ -23,11 +23,18 @@ export function activate(context: vscode.ExtensionContext) {
         setStatus(enabled);
     }));
 
+    vscode.workspace.onDidOpenTextDocument(onOpen, this, context.subscriptions);
     vscode.workspace.onDidChangeTextDocument(onChange, this, context.subscriptions);
 }
 
 
 export function deactivate() {
+}
+
+function onOpen(e) {
+
+    if (isEnable === true)
+        goToLastLine();
 }
 
 function onChange(e) {

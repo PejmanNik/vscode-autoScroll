@@ -29,6 +29,10 @@ This extension contributes the following settings:
 
 ## Release Notes
 
+### 1.0.2
+
+Fix not scrolling to end of file right after open it
+
 ### 1.0.1
 
 Initial release

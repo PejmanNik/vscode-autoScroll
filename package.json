@@ -2,7 +2,7 @@
     "name": "vscode-auto-scroll",
     "displayName": "Auto Scroll",
     "description": "auto scroll to the end of file",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "pejmannikram",
     "icon": "images/icon.png",
     "repository": {
