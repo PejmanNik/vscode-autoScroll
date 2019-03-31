@@ -31,26 +31,35 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
 }
 
-function onOpen(e) {
+function onOpen() {
 
     if (isEnable === true)
-        goToLastLine();
+        goToLastLine(vscode.window.activeTextEditor);
 }
 
 function onChange(e) {
 
     if (isEnable === true && !e.document.isDirty)
-        goToLastLine();
+        goToLastLineForDocument(e.document);
 }
 
-function goToLastLine() {
+function goToLastLineForDocument(changedDoc) {
 
-    const editor = vscode.window.activeTextEditor;    
-    const position = new vscode.Position(vscode.window.activeTextEditor.document.lineCount - 1, 0)
+    vscode.window.visibleTextEditors
+        .filter(te => te.document === changedDoc)
+        .forEach(goToLastLine);    
+}
 
-    editor.selection =  new vscode.Selection(position,position);
-    editor.revealRange(new vscode.Range(position,position),
-        vscode.TextEditorRevealType.InCenterIfOutsideViewport);
+function goToLastLine(textEditor) {
+    
+    if(!textEditor)
+        return
+
+    const position = new vscode.Position(textEditor.document.lineCount - 1, 0)
+
+    textEditor.selection =  new vscode.Selection(position,position);
+    textEditor.revealRange(new vscode.Range(position,position),
+        vscode.TextEditorRevealType.Default);
 }
 
 function setStatus(enabled: boolean) {
@@ -63,7 +72,7 @@ function setStatus(enabled: boolean) {
 
     if (enabled) {
         statusBarItem.text = '$(check) Auto Scroll';
-        goToLastLine();
+        goToLastLine(vscode.window.activeTextEditor);
     }
     else {
         statusBarItem.text = '$(x) Auto Scroll';

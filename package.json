@@ -28,7 +28,8 @@
     ],
     "main": "./out/extension",
     "contributes": {
-        "commands": [{
+        "commands": [
+            {
                 "command": "autoScroll.toggle",
                 "title": "Toggle Auto Scroll",
                 "category": "Auto Scroll"
