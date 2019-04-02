@@ -2,16 +2,17 @@
 
 import * as vscode from 'vscode';
 
-var statusBarItem = null;
-var isEnable: boolean;
-
+let statusBarItem = null;
+let isEnable: boolean;
+let revealType : vscode.TextEditorRevealType;
 
 export function activate(context: vscode.ExtensionContext) {
 
     isEnable = context.globalState.get("isEnable") || false;
+    onChangeConfiguration();
     setStatus(isEnable);
 
-    context.subscriptions.push(vscode.commands.registerCommand('autoScroll.enable', () => {
+    context.subscriptions.push(vscode.commands.registerCommand('autoScroll.enable', () => {        
         context.globalState.update("isEnable", true);
         setStatus(true);
     }));
@@ -23,12 +24,22 @@ export function activate(context: vscode.ExtensionContext) {
         setStatus(enabled);
     }));
 
+    vscode.workspace.onDidChangeConfiguration(onChangeConfiguration, this, context.subscriptions)
     vscode.workspace.onDidOpenTextDocument(onOpen, this, context.subscriptions);
     vscode.workspace.onDidChangeTextDocument(onChange, this, context.subscriptions);
 }
 
 
-export function deactivate() {
+export function deactivate() { }
+
+function onChangeConfiguration() {
+    const config = vscode.workspace.getConfiguration('autoscroll');
+    const keepLastLineInCenter = config.get('keepLastLineInCenter');
+    
+    if (keepLastLineInCenter)
+        revealType = vscode.TextEditorRevealType.InCenterIfOutsideViewport
+    else
+        revealType = vscode.TextEditorRevealType.Default;
 }
 
 function onOpen() {
@@ -37,29 +48,27 @@ function onOpen() {
         goToLastLine(vscode.window.activeTextEditor);
 }
 
-function onChange(e) {
+function onChange(e: vscode.TextDocumentChangeEvent) {
 
     if (isEnable === true && !e.document.isDirty)
         goToLastLineForDocument(e.document);
 }
 
-function goToLastLineForDocument(changedDoc) {
+function goToLastLineForDocument(changedDoc: vscode.TextDocument) {
 
     vscode.window.visibleTextEditors
-        .filter(te => te.document === changedDoc)
-        .forEach(goToLastLine);    
+        .filter(editor => editor.document === changedDoc)
+        .forEach(goToLastLine);
 }
 
-function goToLastLine(textEditor) {
-    
-    if(!textEditor)
+function goToLastLine(textEditor: vscode.TextEditor) {
+
+    if (!textEditor)
         return
 
     const position = new vscode.Position(textEditor.document.lineCount - 1, 0)
-
-    textEditor.selection =  new vscode.Selection(position,position);
-    textEditor.revealRange(new vscode.Range(position,position),
-        vscode.TextEditorRevealType.Default);
+    textEditor.selection = new vscode.Selection(position, position);
+    textEditor.revealRange(new vscode.Range(position, position), revealType);
 }
 
 function setStatus(enabled: boolean) {
