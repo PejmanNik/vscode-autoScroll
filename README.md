@@ -26,6 +26,7 @@ This extension contributes the following settings:
 * `autoScroll.enable`: enable/disable this extension
 * `autoScroll.toggle`: toggle enable/disable
 
+## LICENSE - Apache 2.0
 
 ## Release Notes
 
@@ -43,3 +44,4 @@ This extension contributes the following settings:
 ## [1.0.1] - 2017-12-8
 ### Added
 - auto scroll to end of file when it changes outside of vs code
+
