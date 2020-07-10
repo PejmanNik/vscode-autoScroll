@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [1.0.4] - 2020-07-10
+### Added
+- Add option for scroll all opened files and change default behavior
+
 ## [1.0.3] - 2019-02-04
 ### Added
 - Add setting for change last line position on scrolling

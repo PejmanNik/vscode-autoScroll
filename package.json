@@ -2,7 +2,7 @@
     "name": "vscode-auto-scroll",
     "displayName": "Auto Scroll",
     "description": "auto scroll to the end of file",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "publisher": "pejmannikram",
     "icon": "images/icon.png",
     "repository": {
@@ -48,6 +48,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Keep last line in center of view."
+                },
+                "autoscroll.autoScrollAllOpenedFiles": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Auto scroll all opened files"
                 }
             }
         }
