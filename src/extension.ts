@@ -103,16 +103,9 @@ function setStatus(enabled: boolean) {
   if (enabled) {
     statusBarItem.text = "$(check) Auto Scroll";
     goToLastLine(vscode.window.activeTextEditor);
-
-    vscode.window.visibleTextEditors.forEach((editor) =>
-      activeEditors.set(editor.document.uri.toString(), editor)
-    );
+    activeEditors.set(vscode.window.activeTextEditor.document.uri.toString(), vscode.window.activeTextEditor);
   } else {
     statusBarItem.text = "$(x) Auto Scroll";
-
-    vscode.window.visibleTextEditors.forEach((editor) =>
-      activeEditors.delete(editor.document.uri.toString())
-    );
   }
 
   isEnable = enabled;
