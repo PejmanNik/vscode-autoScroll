@@ -1,73 +1,82 @@
 {
-    "name": "vscode-auto-scroll",
-    "displayName": "Auto Scroll",
-    "description": "auto scroll to the end of file",
-    "version": "1.0.4",
-    "publisher": "pejmannikram",
-    "icon": "images/icon.png",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/PejmanNik/vscode-autoScroll.git"
-    },
-    "engines": {
-        "vscode": "^1.18.0"
-    },
-    "keywords": [
-        "Log",
-        "Log File",
-        "Scroll",
-        "Auto Scroll",
-        "End of file"
+  "name": "vscode-auto-scroll",
+  "displayName": "AutoScroll",
+  "description": "auto scroll to the end of file",
+  "version": "1.1.0",
+  "publisher": "pejmannikram",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PejmanNik/vscode-autoScroll.git"
+  },
+  "keywords": [
+    "Log",
+    "Log File",
+    "Scroll",
+    "Auto Scroll",
+    "End of file"
+  ],
+  "engines": {
+    "vscode": "^1.65.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:log",
+    "onCommand:autoScroll.enable"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "autoScroll.disable",
+        "title": "Disable Auto Scroll",
+        "category": "Auto Scroll"
+      },
+      {
+        "command": "autoScroll.enable",
+        "title": "Enable Auto Scroll",
+        "category": "Auto Scroll"
+      }
     ],
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onLanguage:log",
-        "onCommand:autoScroll.enable"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "autoScroll.toggle",
-                "title": "Toggle Auto Scroll",
-                "category": "Auto Scroll"
-            },
-            {
-                "command": "autoScroll.enable",
-                "title": "Enable Auto Scroll",
-                "category": "Auto Scroll"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "AutoScroll",
-            "properties": {
-                "autoscroll.keepLastLineInCenter": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Keep last line in center of view."
-                },
-                "autoscroll.autoScrollAllOpenedFiles": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Auto scroll all opened files"
-                }
-            }
+    "configuration": {
+      "type": "object",
+      "title": "AutoScroll",
+      "properties": {
+        "autoscroll.keepLastLineInCenter": {
+          "type": "boolean",
+          "default": true,
+          "description": "Keep last line in center of view."
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^3.4.1",
-        "vscode": "^1.1.33",
-        "@types/node": "^11.13.0",
-        "@types/mocha": "^5.2.6"
+      }
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.65.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.9.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.1",
+    "typescript": "^4.5.5",
+    "ts-loader": "^9.2.6",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "@vscode/test-electron": "^2.1.2"
+  }
 }

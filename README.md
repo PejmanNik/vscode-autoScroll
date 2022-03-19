@@ -23,11 +23,16 @@ https://marketplace.visualstudio.com/items?itemName=emilast.LogFileHighlighter
 
 This extension contributes the following settings:
 
-* `autoScroll.enable`: enable/disable this extension
+* `autoScroll.enable`: enable this extension
+* `autoScroll.disable`: disable this extension
 * `autoScroll.toggle`: toggle enable/disable
 
 
 ## Release Notes
+
+## [1.1.0] - 2022-03-19
+### Changed 
+- Refactor the project
 
 ## [1.0.4] - 2020-07-10
 ### Added
