@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import constant from "./constant";
 import { State } from "./state";
 
 export function registerStatusBar(state: State, subs: vscode.Disposable[]) {
@@ -25,7 +26,7 @@ function createStatusBarItem(): vscode.StatusBarItem {
     vscode.StatusBarAlignment.Right,
     100
   );
-  item.command = "autoScroll.toggle";
+  item.command = constant.toggle;
   return item;
 }
 

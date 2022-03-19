@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import constant from "./constant";
 
 type ActiveStatusChanged = (
   isActive: boolean,
@@ -12,11 +13,6 @@ export interface State {
   reloadConfiguration(): void;
   getRevealType(): vscode.TextEditorRevealType;
 }
-
-const keys = {
-  activeDocument: "activeDocument",
-  keepLastLineInCenter: "keepLastLineInCenter",
-};
 
 export function buildState(context: vscode.ExtensionContext): State {
   const state = context.globalState;
@@ -37,12 +33,12 @@ export function buildState(context: vscode.ExtensionContext): State {
   };
 }
 
-const getConfiguration = () => vscode.workspace.getConfiguration("autoscroll");
+const getConfiguration = () => vscode.workspace.getConfiguration(constant.name);
 
 const getRevealType = (
   config: vscode.WorkspaceConfiguration
 ): vscode.TextEditorRevealType => {
-  const keepLastLineInCenter = config.get(keys.keepLastLineInCenter);
+  const keepLastLineInCenter = config.get(constant.keepLastLineInCenter);
   return keepLastLineInCenter === true
     ? vscode.TextEditorRevealType.InCenter
     : vscode.TextEditorRevealType.Default;
@@ -68,9 +64,9 @@ const setDocumentStatus =
       activeDocuments.add(uri);
     }
 
-    state.update(keys.activeDocument, [...activeDocuments.values()]);
+    state.update(constant.activeDocument, [...activeDocuments.values()]);
     subscribes.forEach((x) => x(isActive, textDocument));
   };
 
 const getActiveDocuments = (state: vscode.Memento): Set<string> =>
-  new Set<string>(state.get(keys.activeDocument, []));
+  new Set<string>(state.get(constant.activeDocument, []));
