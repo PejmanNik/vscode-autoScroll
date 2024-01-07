@@ -12,6 +12,7 @@ export interface State {
   onActiveStatusChanged(callback: ActiveStatusChanged): void;
   reloadConfiguration(): void;
   getRevealType(): vscode.TextEditorRevealType;
+  autoEnableForLogs: boolean;
 }
 
 export function buildState(context: vscode.ExtensionContext): State {
@@ -25,6 +26,7 @@ export function buildState(context: vscode.ExtensionContext): State {
   const statusChangeSubscribes: ActiveStatusChanged[] = [];
 
   return {
+    autoEnableForLogs: config.get<boolean>(constant.autoEnableForLogs) ?? false,
     setDocumentStatus: setDocumentStatus(state, statusChangeSubscribes),
     isDocumentActive: isDocumentActive(state),
     reloadConfiguration: reloadConfiguration,

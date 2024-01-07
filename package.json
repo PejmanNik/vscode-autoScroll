@@ -2,7 +2,7 @@
   "name": "vscode-auto-scroll",
   "displayName": "AutoScroll",
   "description": "auto scroll to the end of file",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "pejmannikram",
   "icon": "images/icon.png",
   "repository": {
@@ -17,14 +17,13 @@
     "End of file"
   ],
   "engines": {
-    "vscode": "^1.65.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:log",
-    "onCommand:autoScroll.enable"
+    "onLanguage:log"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -48,6 +47,11 @@
           "type": "boolean",
           "default": true,
           "description": "Keep last line in center of view."
+        },
+        "autoscroll.autoEnableForLogs": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically enable auto-scroll for log files."
         }
       }
     }
@@ -64,19 +68,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.65.0",
-    "@types/glob": "^7.2.0",
-    "@types/mocha": "^9.1.0",
-    "@types/node": "14.x",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "eslint": "^8.9.0",
-    "glob": "^7.2.0",
-    "mocha": "^9.2.1",
-    "typescript": "^4.5.5",
-    "ts-loader": "^9.2.6",
-    "webpack": "^5.69.1",
-    "webpack-cli": "^4.9.2",
-    "@vscode/test-electron": "^2.1.2"
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.6",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.0",
+    "@typescript-eslint/parser": "^6.18.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

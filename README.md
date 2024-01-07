@@ -19,7 +19,15 @@ For better log viewing you can install
 https://marketplace.visualstudio.com/items?itemName=emilast.LogFileHighlighter
 
 
-## Extension Settings
+## Extension Configuration
+
+AutoScroll extension support the following configuration:
+
+* **autoEnableForLogs**: Automatically enable the auto scroll for files with `log`` language. It is disabled by default.
+* **keepLastLineInCenter**: Keep the last line in the center of the screen. By default, it is disabled, and the last line will be kept at the end of the editor.
+
+
+## Extension Commands
 
 This extension contributes the following settings:
 
@@ -29,6 +37,13 @@ This extension contributes the following settings:
 
 
 ## Release Notes
+
+## [1.2.0] - 2024-01-07
+### Added
+- Add option for auto enabling auto scroll for log files
+
+### Fix
+- Fix auto scroll after opening documents without checking the autoscroll state
 
 ## [1.1.0] - 2022-03-19
 ### Changed 

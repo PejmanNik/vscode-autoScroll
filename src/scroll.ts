@@ -10,7 +10,7 @@ export function scrollToLastLineDocument(
     .forEach((editor) => scrollToLastLineEditor(state, editor));
 }
 
-function scrollToLastLineEditor(state: State, textEditor: vscode.TextEditor) {
+export function scrollToLastLineEditor(state: State, textEditor: vscode.TextEditor) {
   const position = new vscode.Position(
     textEditor.document.lineCount - 2,
     textEditor.selection.start.character

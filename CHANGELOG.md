@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [1.2.0] - 2024-01-07
+### Added
+- Add option for auto enabling auto scroll for log files
+
+### Fix
+- Fix auto scroll after opening documents without checking the autoscroll state
+
 ## [1.1.0] - 2022-03-19
 ### Changed 
 - Refactor the project

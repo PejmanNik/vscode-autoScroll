@@ -21,5 +21,17 @@ const onChange = (state: State) => (event: vscode.TextDocumentChangeEvent) => {
 };
 
 const onOpen = (state: State) => (textDocument: vscode.TextDocument) => {
-  scrollToLastLineDocument(state, textDocument);
+  const isActive = state.isDocumentActive(textDocument);
+  const isLog = textDocument.languageId === "log" && state.autoEnableForLogs;
+
+  if (isLog && !isActive) {
+    state.setDocumentStatus(true, textDocument);
+  }
+
+  if (isActive || isLog) {
+    // visibleTextEditors is empty when onOpen is called
+    setTimeout(() => {
+      scrollToLastLineDocument(state, textDocument);
+    }, 200);
+  }
 };

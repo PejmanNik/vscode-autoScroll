@@ -5,6 +5,7 @@ const constant = {
   enable: "autoScroll.enable",
   activeDocument: "activeDocument",
   keepLastLineInCenter: "keepLastLineInCenter",
+  autoEnableForLogs: "autoEnableForLogs",
 };
 
 export default constant;
