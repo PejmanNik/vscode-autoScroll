@@ -21,9 +21,9 @@ https://marketplace.visualstudio.com/items?itemName=emilast.LogFileHighlighter
 
 ## Extension Configuration
 
-AutoScroll extension support the following configuration:
+AutoScroll extension supports the following configuration:
 
-* **autoEnableForLogs**: Automatically enable the auto scroll for files with `log`` language. It is disabled by default.
+* **autoEnableForLogs**: Automatically enable the auto scroll for files with `log` language. It is disabled by default.
 * **keepLastLineInCenter**: Keep the last line in the center of the screen. By default, it is disabled, and the last line will be kept at the end of the editor.
 
 
