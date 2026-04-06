@@ -3,3 +3,4 @@ node_modules
 test_script/*.txt
 .vscode-test/
 *.vsix
+dist

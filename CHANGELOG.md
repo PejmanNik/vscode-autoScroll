@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-04-06
+### Changed
+- Update development tooling and dependencies 
+
 ## [1.2.0] - 2024-01-07
 ### Added
 - Add option for auto enabling auto scroll for log files
