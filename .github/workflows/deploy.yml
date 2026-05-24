@@ -28,7 +28,7 @@ jobs:
         run: npm run package
 
       - name: Package by vsce
-        run: npx vsce package
+        run: npx @vscode/vsce package
       - uses: actions/upload-artifact@v4
         with:
           path: "*.vsix"
@@ -39,6 +39,6 @@ jobs:
     if: success()
     steps:
       - uses: actions/download-artifact@v4
-      - run: npx vsce publish --packagePath $(find . -iname *.vsix)
+      - run: npx @vscode/vsce publish --packagePath $(find . -iname *.vsix)
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
